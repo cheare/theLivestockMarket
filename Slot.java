@@ -1,27 +1,33 @@
 public class Slot {
     private boolean isBought;
-    private DiceAnimal diceAnimal;
+    private AnimalDice animalDice;
 
-    Slot(DiceAnimal.TypeAnimal type){
-        this.diceAnimal = new DiceAnimal(type);
+    Slot(AnimalDice.TypeAnimal type){
+        this.animalDice = new AnimalDice(type);
     }
 
     public int buy(){
         this.isBought = true;
-        return diceAnimal.getAnimal().getPrice();
+        return animalDice.getAnimal().getPrice();
+        /*
+
+        TBC
+
+
+         */
     }
 
     public void resetSlot(){
         this.isBought = false;
-        this.diceAnimal.throwDice();
+        this.animalDice.throwDice();
     }
 
     public boolean isBought() {
         return this.isBought;
     }
 
-    public Animal getAnimal() {
-        return this.diceAnimal.getAnimal();
+    public AnimalDice getAnimalDice() {
+        return this.animalDice;
     }
 
 

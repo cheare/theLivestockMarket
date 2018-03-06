@@ -1,7 +1,9 @@
+import java.util.LinkedList;
+
 public class Bank {
-    private DiceMoney blue= new DiceMoney(DiceMoney.TypeMoney.BLUE);;
-    private DiceMoney red = new DiceMoney(DiceMoney.TypeMoney.RED);;
-    private DiceMoney green = new DiceMoney(DiceMoney.TypeMoney.GREEN);;
+    private MoneyDice blue= new MoneyDice(MoneyDice.TypeMoney.BLUE);;
+    private MoneyDice red = new MoneyDice(MoneyDice.TypeMoney.RED);;
+    private MoneyDice green = new MoneyDice(MoneyDice.TypeMoney.GREEN);;
     private boolean isExchangePossible;
 
     Bank(){
@@ -15,7 +17,7 @@ public class Bank {
         this.isExchangePossible = true;
     }
 
-    public int exchangeDice(DiceMoney.TypeMoney type){
+    public int exchangeDice(MoneyDice.TypeMoney type){
         int valueToReturn = 0;
         switch (type) {
             case BLUE:
@@ -35,9 +37,38 @@ public class Bank {
         return valueToReturn;
     }
 
+    public LinkedList<MoneyDice> getBank(){
+        LinkedList<MoneyDice> bank = new LinkedList<>();
+        bank.add(blue);
+        bank.add(green);
+        bank.add(red);
+        return bank;
+    }
+
+    public void printBank(){
+        System.out.println("Bank: ");
+        for (MoneyDice moneyDice : getBank()){
+            System.out.println(moneyDice.getType() + ": " + moneyDice.getValue());
+        }
+    }
+
     public void makeExchangePossible(){
         this.isExchangePossible = true;
     }
 
+    public MoneyDice getBlue() {
+        return blue;
+    }
 
+    public MoneyDice getRed() {
+        return red;
+    }
+
+    public MoneyDice getGreen() {
+        return green;
+    }
+
+    public boolean isExchangePossible() {
+        return isExchangePossible;
+    }
 }

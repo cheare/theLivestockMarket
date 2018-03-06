@@ -1,6 +1,42 @@
+import java.util.LinkedList;
+
 public class Market {
-    private Slot slotA = new Slot(DiceAnimal.TypeAnimal.A);
-    private Slot slotB = new Slot(DiceAnimal.TypeAnimal.B);
-    private Slot slotC = new Slot(DiceAnimal.TypeAnimal.C);
-    private Slot slotD = new Slot(DiceAnimal.TypeAnimal.D);
+    private Slot slotA = new Slot(AnimalDice.TypeAnimal.A);
+    private Slot slotB = new Slot(AnimalDice.TypeAnimal.B);
+    private Slot slotC = new Slot(AnimalDice.TypeAnimal.C);
+    private Slot slotD = new Slot(AnimalDice.TypeAnimal.D);
+
+    public LinkedList<Slot> getMarket() {
+        LinkedList<Slot> marketSlots = new LinkedList<>();
+        marketSlots.add(getSlotA());
+        marketSlots.add(getSlotB());
+        marketSlots.add(getSlotC());
+        marketSlots.add(getSlotD());
+        return marketSlots;
+    }
+
+    public void printMarket(){
+        System.out.println("Kostki na targu: ");
+        for (Slot slot : getMarket()){
+            Animal animal = slot.getAnimalDice().getAnimal();
+            System.out.println("Zwierzę: " + animal.getName() + ", cena: " + animal.getPrice() + ", kupione: " + slot.isBought());
+        }
+
+    }
+
+    public Slot getSlotA() {
+        return slotA;
+    }
+
+    public Slot getSlotB() {
+        return slotB;
+    }
+
+    public Slot getSlotC() {
+        return slotC;
+    }
+
+    public Slot getSlotD() {
+        return slotD;
+    }
 }
