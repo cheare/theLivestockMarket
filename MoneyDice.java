@@ -1,16 +1,19 @@
-public class DiceMoney extends Dice{
+public class MoneyDice extends Dice{
 
     private int multiplier;
+    private TypeMoney type;
 
     public int getValue() {
         return value;
     }
 
+    public TypeMoney getType() {return type; }
+
     public enum TypeMoney {
         BLUE, RED, GREEN;
     }
 
-    DiceMoney(TypeMoney type){
+    MoneyDice(TypeMoney type){
         switch (type){
             case BLUE:
                 this.multiplier = 1;
@@ -22,6 +25,7 @@ public class DiceMoney extends Dice{
                 this.multiplier = 3;
                 break;
         }
+        this.type = type;
     }
 
     @Override

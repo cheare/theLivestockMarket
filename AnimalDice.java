@@ -1,6 +1,6 @@
 import java.util.ArrayList;
 
-public class DiceAnimal extends Dice{
+public class AnimalDice extends Dice{
     private ArrayList<Animal> animals = new ArrayList<>();
     private Animal animal;
 
@@ -17,7 +17,7 @@ public class DiceAnimal extends Dice{
         A, B, C, D;
     }
 
-    DiceAnimal(TypeAnimal type){
+    AnimalDice(TypeAnimal type){
         switch (type){
             case A:
                 this.animals.add(new Animal("Pig",10));
@@ -52,5 +52,6 @@ public class DiceAnimal extends Dice{
                 this.animals.add(new Animal("Farmer",0));
                 break;
         }
+        throwDice();
     }
 }
