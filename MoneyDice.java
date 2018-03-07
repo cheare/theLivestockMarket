@@ -6,6 +6,10 @@ public class MoneyDice extends Dice{
     public int getValue() {
         return value;
     }
+    public void setValue(int value) {
+        this.value = value;
+    }
+
 
     public TypeMoney getType() {return type; }
 

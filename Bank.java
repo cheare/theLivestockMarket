@@ -17,7 +17,8 @@ public class Bank {
         this.isExchangePossible = true;
     }
 
-    public int exchangeDice(MoneyDice.TypeMoney type){
+    public int exchangeDice(MoneyDice diceToExchange){
+        MoneyDice.TypeMoney type = diceToExchange.getType();
         int valueToReturn = 0;
         switch (type) {
             case BLUE:

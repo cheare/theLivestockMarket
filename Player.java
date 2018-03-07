@@ -37,12 +37,11 @@ public class Player {
         return sum;
     }
 
-    public String printMoneyDices(LinkedList<MoneyDice> moneyDices){
-        String output = "Twoje kostki to:\n\n";
-        for (MoneyDice e : moneyDices){
-            output += e.getType() + ": " + e.getValue() + "\n";
+    public void printMoneyDices(LinkedList<MoneyDice> moneyDices){
+        System.out.println("Twoje kostki to: ");
+        for (MoneyDice e : moneyDices) {
+            System.out.println(e.getType() + ": " + e.getValue());
         }
-        return output;
     }
 
 
@@ -85,4 +84,5 @@ public class Player {
     public void setGreen(MoneyDice green) {
         this.green = green;
     }
+
 }

@@ -6,18 +6,18 @@ public class Game {
     private FarmerBoard farmerBoard;
     private Bank bank;
     private Market market;
-    public Player whoseTurn;
+    public Player activePlayer;
+    private Scanner sc = new Scanner(System.in);
 
     public Game(){
         addPlayers();
-        this.whoseTurn = whoStarts();
+        this.activePlayer = whoStarts();
         this.farmerBoard = new FarmerBoard(players.size());
         this.bank = new Bank();
         this.market = new Market();
     }
 
     private void addPlayers(){
-        Scanner sc = new Scanner(System.in);
         System.out.println("Podaj liczbę graczy: ");
         int numberOfPlayers = sc.nextInt();
         sc.nextLine();
@@ -43,7 +43,6 @@ public class Game {
     public void makeTurn(Player player){
         boolean isTurnFinished = false;
         LinkedList<MoneyDice> currentMoneyDices = player.getMoneyDices();
-        Scanner sc = new Scanner(System.in);
         System.out.println("Teraz ruch gracza o imieniu: " + player.getName()+"\n");
 
         while (!isTurnFinished) {
@@ -51,18 +50,88 @@ public class Game {
             market.printMarket();
             if (bank.isExchangePossible()){
                 bank.printBank();
-                System.out.println("Co chcesz zrobic: \n1 - kupić zwierzę\n2 - zakończyć kolejkę\n3 - wymienić pieniądze w banku");
+                System.out.println("Co chcesz zrobic: \n1 - zakończyć kolejkę\n2 - kupić zwierzę\n3 - wymienić pieniądze w banku");
             } else {
-                System.out.println("Co chcesz zrobic: \n1 - kupić zwierzę\n2 - zakończyć kolejkę");
+                System.out.println("Co chcesz zrobic: \n1 - zakończyć kolejkę\n2 - kupić zwierzę\n");
             }
             int decision = sc.nextInt();
-            if (decision == 2){
+            sc.nextLine();
+            if (decision == 1){
                 isTurnFinished = true;
+            } else if (decision == 2){
+                buyAnimal();
+            } else if (decision == 3){
+                changeMoney();
+            } else {
+                throw new IllegalArgumentException();
+            }
+        }
+    }
+
+    public void buyAnimal(){
+        Slot slotToBuy;
+        System.out.println("Które zwierzę chcesz kupić?");
+        int ans = sc.nextInt();
+        sc.nextLine();
+        switch (ans){
+            case 1:
+                slotToBuy = market.getSlotA();
+                break;
+            case 2:
+                slotToBuy = market.getSlotB();
+                break;
+            case 3:
+                slotToBuy = market.getSlotC();
+                break;
+            case 4:
+                slotToBuy = market.getSlotD();
+                break;
+            default:
+                throw new IllegalArgumentException();
+        }
+        if (!slotToBuy.isBought()){
+            System.out.println("Którą kost");
+            slotToBuy.buy();
+        } else {
+            System.out.println("Już kupiłeś to zwierzę");
+        }
+
+
+    }
+
+    public void changeMoney(){
+
+        if (bank.isExchangePossible()) {
+            System.out.println("Którą kość chcesz wymienić?");
+            System.out.println("1 - pierwsza niebieska,\n2 - druga niebieska,\n3 - zielona,\n4 - czerwona");
+            int ans = sc.nextInt();
+            sc.nextLine();
+            MoneyDice diceToExchange = null;
+
+            switch (ans){
+                case 1:
+                    diceToExchange = activePlayer.getBlue1();
+                    break;
+                case 2:
+                    diceToExchange = activePlayer.getBlue2();
+                    break;
+                case 3:
+                    diceToExchange = activePlayer.getGreen();
+                    break;
+                case 4:
+                    diceToExchange = activePlayer.getRed();
+                    break;
+                default:
+                    throw new IllegalArgumentException();
             }
 
+            int exchangedValue = bank.exchangeDice(diceToExchange);
+            diceToExchange.setValue(exchangedValue);
 
-
+        } else {
+            System.out.println("W tej rundzie możesz już wymieniać kostek w banku");
         }
+
     }
 
 

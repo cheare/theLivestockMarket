@@ -16,10 +16,12 @@ public class Market {
     }
 
     public void printMarket(){
-        System.out.println("Kostki na targu: ");
+        System.out.println("Zwierzęta na targu: ");
+        int number = 1;
         for (Slot slot : getMarket()){
             Animal animal = slot.getAnimalDice().getAnimal();
-            System.out.println("Zwierzę: " + animal.getName() + ", cena: " + animal.getPrice() + ", kupione: " + slot.isBought());
+            System.out.println(number + ": " + animal.getName() + ", cena: " + animal.getPrice() + ", kupione: " + slot.isBought());
+            number++;
         }
 
     }
