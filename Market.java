@@ -15,15 +15,18 @@ public class Market {
         return marketSlots;
     }
 
-    public void printMarket(){
-        System.out.println("Zwierzęta na targu: ");
+
+
+    @Override
+    public String toString(){
+        String output = "Zwierzęta na targu:\n";
         int number = 1;
         for (Slot slot : getMarket()){
             Animal animal = slot.getAnimalDice().getAnimal();
-            System.out.println(number + ": " + animal.getName() + ", cena: " + animal.getPrice() + ", kupione: " + slot.isBought());
+            output += number + ": " + animal.getName() + ", cena: " + animal.getPrice() + ", kupione: " + slot.isBought() + "\n";
             number++;
         }
-
+        return output;
     }
 
     public Slot getSlotA() {

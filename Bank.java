@@ -46,11 +46,13 @@ public class Bank {
         return bank;
     }
 
-    public void printBank(){
-        System.out.println("Bank: ");
+    @Override
+    public String toString(){
+        String output = "Bank:\n";
         for (MoneyDice moneyDice : getBank()){
-            System.out.println(moneyDice.getType() + ": " + moneyDice.getValue());
+            output += moneyDice.getType() + ": " + moneyDice.getValue() +"\n";
         }
+        return output;
     }
 
     public void makeExchangePossible(){

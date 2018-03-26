@@ -47,9 +47,9 @@ public class Game {
 
         while (!isTurnFinished) {
             player.printMoneyDices(currentMoneyDices);
-            market.printMarket();
+            System.out.println(market.toString());
             if (bank.isExchangePossible()){
-                bank.printBank();
+                System.out.println(bank.toString());
                 System.out.println("Co chcesz zrobic: \n1 - zakończyć kolejkę\n2 - kupić zwierzę\n3 - wymienić pieniądze w banku");
             } else {
                 System.out.println("Co chcesz zrobic: \n1 - zakończyć kolejkę\n2 - kupić zwierzę\n");
